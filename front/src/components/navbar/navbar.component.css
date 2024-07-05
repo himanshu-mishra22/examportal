@@ -1,0 +1,25 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .nav{
+    background: hsla(210, 95%, 45%, 0.651);
+  }
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .left{
+    margin-left: 20px;
+  }
+
+  .flex-container {
+    display: flex;
+    align-items: center;
+  
+  }
+  .flex-container span {
+    margin-right: 8px;
+  }

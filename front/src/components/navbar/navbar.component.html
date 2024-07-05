@@ -1,0 +1,28 @@
+
+<mat-toolbar class="nav">
+    <a
+    matTooltip="Home" [routerLink]="['']">
+        graceMarX
+    </a>
+    <!-- <span>graceMarX</span> -->
+    <span class="example-spacer"></span>
+    <a *ngIf="!active"
+    [routerLink]="['/login']"  matTooltip="Login" >
+      <mat-icon class="mr">login</mat-icon>
+    </a>
+
+    <a (click)="logout()"
+    *ngIf="active"
+    matTooltip="Logout" >
+    <div class="flex-container">
+        <span>{{ login.getUser().username }}</span>
+        <mat-icon class="mr">logout</mat-icon>
+      </div>
+    </a>
+
+    <a
+    *ngIf="!active"
+    [routerLink]="['/signup']" matTooltip="Register">
+      <mat-icon>person_add</mat-icon>
+    </a>
+  </mat-toolbar>

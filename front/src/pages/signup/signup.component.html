@@ -1,0 +1,55 @@
+<div class="bootstrap-wrapper">
+	<div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <mat-card appearance="outlined">
+                    <mat-card-content>
+                <div class="container">
+                    <img src="assets/register.png" alt="">
+                </div>
+                
+                <h3 class="text-center">Register Here</h3>
+                <form (ngSubmit)="formSubmit()">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input matInput [(ngModel)]="user.username" name="username">
+                      </mat-form-field>
+
+                      <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput [(ngModel)]="user.password" name="password">
+                      </mat-form-field>
+
+                      <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput [(ngModel)]="user.firstName" name="firstName">
+                      </mat-form-field>
+
+                      <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput [(ngModel)]="user.lastName" name="lastName">
+                      </mat-form-field>
+
+                      <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Phone Number</mat-label>
+                        <input type="number" matInput [(ngModel)]="user.phone" name="phone">
+                      </mat-form-field>
+
+                      <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput [(ngModel)]="user.email" name="email">
+                      </mat-form-field>
+
+
+                      <div class="container">
+                        <button type="submit" class="mr" mat-flat-button>Register</button>
+                        <button type="reset" mat-raised-button>Reset</button>
+                      </div>
+                </form>
+            </mat-card-content>
+            </mat-card>
+            </div>
+        </div>
+	</div>
+</div>
+
