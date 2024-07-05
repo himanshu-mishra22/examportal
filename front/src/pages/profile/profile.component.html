@@ -1,1 +1,52 @@
 
+<mat-card>
+    <h4 class="ml mt">Your Profile Details</h4>
+    {{user | json}}
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="container text-center">
+                    <img src="assets/Default.png">
+
+                    <h5 class="mt">{{user.firstName}} {{user.lastName}}</h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <!-- table details -->
+                         <table class="table text-center">
+                            <tr>
+                                <td>Username</td>
+                                <td>{{user.username}}</td>
+                            </tr>
+                            <tr>
+                                <td>UserId</td>
+                                <td>EXM{{user.id}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{user.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone num</td>
+                                <td>{{user.phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td>{{user.authorities[0].authority}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>{{user.enabled?"ACTIVE":"IN ACTIVE"}}</td>
+                            </tr>
+                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        
+    </mat-card-content>
+    <mat-card-actions class="text-center">
+        <button mat-flat-button>Edit</button>
+    </mat-card-actions>
+</mat-card>

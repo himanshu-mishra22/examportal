@@ -6,6 +6,8 @@ import { AdminComponent } from '../pages/admin/admin.component';
 import { UserComponent } from '../pages/user/user.component';
 import { adminGuard } from './services/admin.guard';
 import { normalGuard } from './services/normal.guard';
+import { ProfileComponent } from '../pages/profile/profile.component';
+import { FrontComponent } from '../pages/admin/front/front.component';
 
 export const routes: Routes = [
     {path:"",
@@ -14,7 +16,7 @@ export const routes: Routes = [
     },
     {path:'login',
         component : LoginComponent,
-        // pathMatch: "full"
+        pathMatch: "full"
        },
        {path:'signup',
         component : SignupComponent,
@@ -22,8 +24,19 @@ export const routes: Routes = [
        },
        {path:'admin',
         component : AdminComponent,
-        pathMatch: "full",
         canActivate:[adminGuard],
+        children:[
+            {
+                path:'profile',
+                component:ProfileComponent,
+            },
+            {
+                path:'',
+                component:FrontComponent,
+            }
+
+        ]
+
        },
        {path:'user',
         component : UserComponent,

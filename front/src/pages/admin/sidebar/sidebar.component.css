@@ -1,0 +1,8 @@
+.flex-container {
+    display: flex;
+    align-items: center;
+  
+  }
+  .flex-container span {
+    margin-right: 8px;
+  }
