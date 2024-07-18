@@ -1,0 +1,34 @@
+<mat-card>
+   <div class="head mt">
+    <button mat-icon-button [routerLink]="['/admin/view-category']">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h4 class="ml">Add new Category</h4>
+   </div>
+    <mat-card-content>
+       <div class="bootstrap-wrapper">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 mt">
+                <form (ngSubmit)="add()">
+                    <mat-form-field appearance="outline" class="form">
+                        <mat-label>Title</mat-label>
+                        <input matInput  [(ngModel)]="category.title" name="title">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="form">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput [(ngModel)]="category.description" name="description"></textarea>
+                    </mat-form-field>
+
+                    <div class="container text-center">
+                        <button type="submit" class="mr" mat-flat-button>Add</button>
+                        <button type="reset" mat-raised-button>Reset</button>
+                      </div>
+                </form>
+            </div>
+        </div>
+
+       </div>
+    </mat-card-content>
+</mat-card>
+
+

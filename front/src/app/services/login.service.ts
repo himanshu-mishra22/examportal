@@ -14,7 +14,7 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
 
-  getCurrentUser(): Observable<any> {
+  getCurrentUser() {
     const token = this.getToken();
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
@@ -81,6 +81,8 @@ export class LoginService {
       let user = this.getUser();
       return user.authorities[0].authority;
     }
+
+    
 
 
 

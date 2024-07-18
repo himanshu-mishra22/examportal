@@ -1,0 +1,71 @@
+
+<mat-card>
+    <div class="head mt">
+     <button mat-icon-button [routerLink]="['/admin/profile']">
+         <mat-icon>arrow_back</mat-icon>
+     </button>
+     <h4 class="ml">Edit Profile</h4>
+    </div>
+ <div class="bootstrap-wrapper">
+	<div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <mat-card appearance="outlined">
+                    <mat-card-content>
+                <form #profileForm="ngForm" (ngSubmit)="add(profileForm)">
+
+
+                  <mat-form-field class="form" appearance="outline">
+                    <mat-label>Change Password</mat-label>
+                    <input matInput name="password" ngModel required type="password">
+                    <mat-error *ngIf="profileForm.controls['password'].invalid && profileForm.controls['password'].touched">
+                        Password is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form" appearance="outline">
+                    <mat-label>Re-Type Password</mat-label>
+                    <input matInput name="confirmPassword" ngModel required type="password">
+                    <mat-error *ngIf="profileForm.controls['confirmPassword'].invalid && profileForm.controls['confirmPassword'].touched">
+                        Confirm Password is required.
+                    </mat-error>
+                    <mat-error *ngIf="profileForm.controls['password'].value !== profileForm.controls['confirmPassword'].value && profileForm.controls['confirmPassword'].touched">
+                        Passwords do not match.
+                    </mat-error>
+                </mat-form-field>
+                      <mat-form-field class="form" appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput name="firstName">
+                      </mat-form-field>
+
+                      <mat-form-field class="form" appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput name="lastName">
+                      </mat-form-field>
+
+                      <mat-form-field class="form" appearance="outline">
+                        <mat-label>Phone Number</mat-label>
+                        <input type="number" matInput  name="phone">
+                      </mat-form-field>
+
+                      <mat-form-field class="form" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput name="email">
+                      </mat-form-field>
+
+
+                      <div class="container">
+                        <button type="submit" class="mr" mat-flat-button>Update</button>
+                        <button type="reset" mat-raised-button>Reset</button>
+                      </div>
+                </form>
+            </mat-card-content>
+            </mat-card>
+            </div>
+        </div>
+	</div>
+</div>
+
+
+
+ 

@@ -52,15 +52,26 @@ public class UserController {
     public void deleteUser(@PathVariable("Id") Long Id){
         this.userService.deleteUser(Id);
     }
+//
+//    @PutMapping("/{userName}")
+//    public User updateUser(@PathVariable("userName") String username, @RequestBody User user) throws Exception {
+//        User existingUser = this.userService.getUser(username);
+//        if (existingUser == null) {
+//            throw new Exception("User not found");
+//        }
+//
+//        user.setId(existingUser.getId()); // Ensure the correct ID is set
+//        return this.userService.updateUser(user);
+//    }
 
-    @PutMapping("/{userName}")
-    public User updateUser(@PathVariable("userName") String username, @RequestBody User user) throws Exception {
-        User existingUser = this.userService.getUser(username);
+
+    @PutMapping
+    public User updateUser(@RequestBody User user) throws Exception {
+        User existingUser = this.userService.getUser(user.getUsername());
         if (existingUser == null) {
             throw new Exception("User not found");
         }
 
-        user.setId(existingUser.getId()); // Ensure the correct ID is set
         return this.userService.updateUser(user);
     }
 

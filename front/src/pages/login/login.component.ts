@@ -9,6 +9,7 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,9 @@ import { LoginService } from '../../app/services/login.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private login: LoginService) {}
+  constructor(private login: LoginService,
+    private router:Router
+  ) {}
 
   loginData = {
     username: '',
@@ -50,14 +53,14 @@ export class LoginComponent {
             //redirection-->
             if(this.login.getUserRole()==="ADMIN"){
               //admin dashboard
-              window.location.href='/admin';
+              this.router.navigate(['admin']);
               this.login.loginStatus.next(true);
 
 
 
             }else if(this.login.getUserRole()==="NORMAL"){
               //normal user dashboard
-              window.location.href='/user';
+              this.router.navigate(['user/0']);
               this.login.loginStatus.next(true);
 
             }else{

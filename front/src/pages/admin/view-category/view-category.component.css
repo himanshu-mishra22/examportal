@@ -1,0 +1,25 @@
+.heading{
+    display: flex;
+    font-weight: 600;
+}
+
+
+.desc{
+    
+    position: relative;
+    left: 45px;
+    font-size: 15px;
+    
+
+}
+
+.list{
+    border-bottom: 1px solid #333;
+    height: auto;
+    
+    
+   
+}
+
+
+

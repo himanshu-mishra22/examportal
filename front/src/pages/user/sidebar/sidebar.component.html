@@ -1,0 +1,25 @@
+
+<mat-card appearance="outlined">
+    <mat-action-list>
+        <div mat-subheader>Menu</div>
+        <button mat-list-item>
+            <div class="flex-container">
+                <mat-icon class="mr">account_circle</mat-icon>
+                <span>Profile</span>
+              </div>
+        </button>
+        <button mat-list-item [routerLink]="'/user/0'">
+            <div class="flex-container">
+                <mat-icon class="mr">lists</mat-icon>
+                <span>All Quizzes</span>
+              </div>
+        </button>
+        <button [routerLink]="'/user/'+c.cid" mat-list-item *ngFor="let c of categories">
+            <div class="flex-container">
+                <mat-icon class="mr">book</mat-icon>
+                <span>{{c.title}}</span>
+              </div>
+        </button>
+       
+      </mat-action-list>
+</mat-card>

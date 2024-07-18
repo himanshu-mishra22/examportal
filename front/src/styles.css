@@ -8,16 +8,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .mr{
-    margin-right: 20px;
+    margin-right: 20px !important;
 }
 .ml{
     margin-left: 20px !important;
 }
 
 .mt{
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 
 .mb{
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
+}
+.form{
+    width: 100%;
+}
+.head{
+    display: flex;
 }

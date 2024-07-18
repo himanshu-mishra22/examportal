@@ -1,0 +1,42 @@
+<div class="head mt">
+    <button mat-icon-button [routerLink]="['/admin/view-quizzes']">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h4 class="ml">Questions</h4>
+   </div>
+   <button mat-flat-button class="mb mt" [routerLink]="'/admin/add-ques/'+qid+'/'+qtitle">Add Question</button>
+<div class="bootstrap-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card *ngFor="let q of questions; let i =index" class="mt">
+                <mat-card-content>
+                    <p>Q{{i+1}}.</p><span [innerHTML]="q.content"></span>
+                    <!-- options -->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>1. {{q.op1}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>2. {{q.op2}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>3. {{q.op3}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>4. {{q.op4}}</p>
+                            </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <p class="mt"><b>Correct Answer:</b> {{q.ans}}</p>
+                    </div>
+                    <button mat-flat-button class="mr">Update</button>
+                    <button mat-raised-button (click)="delete(q.quesid)">Delete</button>
+                </mat-card-content>
+                
+            </mat-card>
+        </div>
+    </div>
+</div>

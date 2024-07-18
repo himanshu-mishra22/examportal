@@ -1,0 +1,33 @@
+.example-header-image {
+    background-image: url(../../../../public/assets/file.png);
+    background-size: cover;
+    
+  }
+.sub{
+    font-weight: 400;
+}
+
+.delete{
+    position: relative;
+   margin-right: auto;
+    
+}
+
+.corner-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.delete{
+    position: relative;
+    margin-top: 31px;
+    margin-left: 96px;
+}
+
+.head{
+    display: flex;
+}
+
+    
+

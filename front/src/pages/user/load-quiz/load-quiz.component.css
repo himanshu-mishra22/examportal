@@ -1,0 +1,12 @@
+.trunc{
+    display: block;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.icon {
+    background-image: url('../../../../public/assets/test.png');
+    background-size: cover;
+  }

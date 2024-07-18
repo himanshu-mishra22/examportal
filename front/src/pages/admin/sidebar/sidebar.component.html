@@ -14,21 +14,21 @@
                 <span>Profile</span>
               </div>
         </button>
-        <button mat-list-item [routerLink]="['profile']">
+        <button mat-list-item [routerLink]="['view-category']">
             <div class="flex-container">
                 <mat-icon class="mr">category</mat-icon>
                 <span>Categories</span>
               </div>
         </button>
-        <button mat-list-item [routerLink]="['profile']">
+        <button mat-list-item [routerLink]="['view-quizzes']">
             <div class="flex-container">
                 <mat-icon class="mr">library_books</mat-icon>
                 <span>Quizzes</span>
               </div>
         </button>
-        <button mat-list-item [routerLink]="['profile']">
+        <button mat-list-item (click)="logout()">
             <div class="flex-container">
-                <mat-icon class="mr">logout</mat-icon>
+                <mat-icon class="mr" >logout</mat-icon>
                 <span>Logout</span>
               </div>
         </button>

@@ -1,0 +1,15 @@
+<button mat-flat-button class="mb mt" [routerLink]="['/admin/add-category']">Add Category</button>
+
+<mat-card appearance="outlined">
+    <mat-list>
+        <div mat-subheader>All Categories</div>
+        <mat-list-item *ngFor="let c of categories" class="mb list">
+            <div class="heading mt">
+                <mat-icon mat-list-icon class="mr">folder</mat-icon>
+                <div mat-line>{{c.title}}</div>
+            </div>
+            <div class="desc mb" mat-line>{{c.description}}
+            </div>
+        </mat-list-item>
+    </mat-list>
+  </mat-card>

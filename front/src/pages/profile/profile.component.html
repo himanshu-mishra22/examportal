@@ -1,7 +1,6 @@
 
 <mat-card>
     <h4 class="ml mt">Your Profile Details</h4>
-    {{user | json}}
     <mat-card-content>
         <div class="bootstrap-wrapper">
             <div class="container">
@@ -47,6 +46,6 @@
         
     </mat-card-content>
     <mat-card-actions class="text-center">
-        <button mat-flat-button>Edit</button>
+        <button mat-flat-button [routerLink]="['/admin/profile/update-profile/']+user.username">Edit</button>
     </mat-card-actions>
 </mat-card>
