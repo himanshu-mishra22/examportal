@@ -6,6 +6,8 @@ import com.exam.Service.UserService;
 import com.exam.entity.User;
 import com.exam.entity.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -18,6 +20,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleRepo roleRepo;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
 
     @Override
@@ -48,19 +54,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user) {
-        User local = this.userRepo.findByUsername(user.getUsername());
-        if(local == null){
-            System.out.println("No user found!");
-        }
-        local.setUsername(user.getUsername());
-        local.setPassword(user.getPassword());
-        local.setFirstName(user.getFirstName());
-        local.setLastName(user.getLastName());
-        local.setEmail(user.getEmail());
-        local.setPhone(user.getPhone());
-        local.setProfile(user.getProfile());
+    public User updateUser(Long userId, User user) throws Exception {
+        User existing = this.userRepo.findById(userId).orElseThrow(()-> new UsernameNotFoundException("user not found"));
 
-        return this.userRepo.save(local);
+        //updating fields
+        existing.setFirstName(user.getFirstName());
+        existing.setLastName(user.getLastName());
+//        existing.setPassword(user.getPassword());
+        existing.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+        existing.setPhone(user.getPhone());
+        existing.setEmail(user.getEmail());
+
+        //save
+        return this.userRepo.save(existing);
+
     }
+
 }

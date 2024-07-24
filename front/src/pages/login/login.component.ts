@@ -1,5 +1,5 @@
 
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -9,12 +9,13 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../app/services/login.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule,MatFormFieldModule,MatInputModule, MatIconModule,MatButtonModule, MatDividerModule, MatCardModule, FormsModule],
+  imports: [CommonModule,MatFormFieldModule,MatInputModule, MatIconModule,MatButtonModule, MatDividerModule, MatCardModule, FormsModule,RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -23,24 +24,34 @@ export class LoginComponent {
     private router:Router
   ) {}
 
+
   loginData = {
     username: '',
     password: '',
   };
 
   formSubmit() {
-    console.log('button clicked');
-    console.log('Login Data:', this.loginData); // Debug log
+    // console.log('button clicked');
+    // console.log('Login Data:', this.loginData); // Debug log
 
     if (this.loginData.username.trim() === '' || this.loginData.username == null) {
-      alert('Username required');
+      Swal.fire({
+        title:"Username required!"});
       return;
     }
+
+    if (this.loginData.password.trim() === '' || this.loginData.password == null) {
+      Swal.fire({
+        title:"Password required!"});
+      return;
+    }
+
+    
 
     // Generate token from server
     this.login.generateToken(this.loginData).subscribe(
       (data: any) => {
-        console.log('Token received:', data.token); // Debug log
+        // console.log('Token received:', data.token);
 
         // Log in the user
         this.login.loginUser(data.token);
@@ -49,7 +60,7 @@ export class LoginComponent {
         this.login.getCurrentUser().subscribe(
           (user: any) => {
             this.login.setUser(user);
-            console.log('User:', user); // Debug log
+            // console.log('User:', user); // Debug log
             //redirection-->
             if(this.login.getUserRole()==="ADMIN"){
               //admin dashboard
@@ -60,7 +71,7 @@ export class LoginComponent {
 
             }else if(this.login.getUserRole()==="NORMAL"){
               //normal user dashboard
-              this.router.navigate(['user/0']);
+              this.router.navigate(['user']);
               this.login.loginStatus.next(true);
 
             }else{
@@ -68,17 +79,25 @@ export class LoginComponent {
             }
           },
           (error) => {
-            console.log('Error occurred while fetching user');
-            console.log(error);
+            Swal.fire({
+              icon: "error",
+              title: "Login failed!",
+              text: "Username or password Incorrect",
+            });
           }
         );
       },
       (error) => {
-        console.log('Error occurred while generating token');
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Login failed!",
+          text: "Username or password Incorrect",
+        });
       }
     );
   }
+
+ 
 }
 
 

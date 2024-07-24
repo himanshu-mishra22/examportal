@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { QuizzesService } from '../../../app/services/quizzes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-quizzes',
@@ -20,17 +21,34 @@ export class ViewQuizzesComponent implements OnInit{
 
 
 deleteQuiz(qid:any) {
-  this.quiz.delete(qid).subscribe(
-    (data:any)=>{
-      console.log(data);
-      this.quizzes = this.quizzes.filter((quiz)=>quiz.qid != qid);
-      alert("Quiz Deleted");
-    },
-    (error)=>{
-      console.log(error);
-      
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.quiz.delete(qid).subscribe(
+        (data:any)=>{
+          // console.log(data);
+          this.quizzes = this.quizzes.filter((quiz)=>quiz.qid != qid);
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        },
+        (error)=>{
+          alert("Something wwent wrong!")
+          
+        }
+      )
     }
-  )
+  });
 }
 
 

@@ -6,6 +6,7 @@ import com.exam.entity.Roles;
 import com.exam.entity.User;
 import com.exam.entity.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,32 +49,21 @@ public class UserController {
         return this.userService.getUser(username);
     }
 
-    @DeleteMapping("/{Id}")
-    public void deleteUser(@PathVariable("Id") Long Id){
+    @DeleteMapping("/{userId}")
+    public void deleteUser(@PathVariable("userId") Long Id){
         this.userService.deleteUser(Id);
     }
-//
-//    @PutMapping("/{userName}")
-//    public User updateUser(@PathVariable("userName") String username, @RequestBody User user) throws Exception {
-//        User existingUser = this.userService.getUser(username);
-//        if (existingUser == null) {
-//            throw new Exception("User not found");
-//        }
-//
-//        user.setId(existingUser.getId()); // Ensure the correct ID is set
-//        return this.userService.updateUser(user);
-//    }
 
-
-    @PutMapping
-    public User updateUser(@RequestBody User user) throws Exception {
-        User existingUser = this.userService.getUser(user.getUsername());
-        if (existingUser == null) {
-            throw new Exception("User not found");
+    @PutMapping("/{userId}")
+    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User user){
+        try{
+            User userInfo = this.userService.updateUser(userId,user);
+            return ResponseEntity.ok(userInfo);
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
         }
-
-        return this.userService.updateUser(user);
     }
+
 
 
 

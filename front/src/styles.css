@@ -27,3 +27,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .head{
     display: flex;
 }
+
+.bg-color{
+    background: #E5E4E2;
+    min-height: 100vh;
+}

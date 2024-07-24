@@ -1,4 +1,5 @@
-<div class="bootstrap-wrapper">
+
+<div class="bootstrap-wrapper bg-color">
 	<div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
@@ -12,13 +13,14 @@
                 <form (ngSubmit)="formSubmit()">
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Username</mat-label>
-                        <input matInput [(ngModel)]="loginData.username" name="username">
+                        <input matInput required [(ngModel)]="loginData.username" name="username">
                       </mat-form-field>
 
                       <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input matInput [(ngModel)]="loginData.password" name="password">
+                        <input matInput required [(ngModel)]="loginData.password" name="password" type="password">
                       </mat-form-field>
+
 
                       <div class="container">
                         <button type="submit" class="mr" mat-flat-button>Login</button>
@@ -27,8 +29,13 @@
                 </form>
             </mat-card-content>
             </mat-card>
+            <div class="container text-center head"><p>New to this platform?</p><a [routerLink]="['/signup']">Register here!</a></div>
             </div>
         </div>
 	</div>
 </div>
+
+
+
+
 

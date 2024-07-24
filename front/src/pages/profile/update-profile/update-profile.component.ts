@@ -12,6 +12,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { LoginService } from '../../../app/services/login.service';
 import { UserServiceService } from '../../../app/services/user-service.service';
 
+
 @Component({
   selector: 'app-update-profile',
   standalone: true,
@@ -19,48 +20,52 @@ import { UserServiceService } from '../../../app/services/user-service.service';
   templateUrl: './update-profile.component.html',
   styleUrl: './update-profile.component.css'
 })
-export class UpdateProfileComponent implements OnInit {
-add(profileForm: NgForm) {
-  if(profileForm.valid){
-    const formData = profileForm.value;
-
-    // Handle form submission logic here
-    console.log('Form submitted successfully:', formData);
-
-    // You can call your service to update the user details
-    // this.userService.updateUser(formData).subscribe(...);
-  } else {
-    console.error('Form is invalid:', profileForm);
-    alert("Password not matched");
+export class UpdateProfileComponent implements OnInit{
+submit() {
+  if(this.confPass != this.updateData.password){
+    alert("Password not matched!");
+    return;
   }
+
+  this.userservice.updateUser(this.userId,this.updateData).subscribe(
+    (data:any)=>{
+      console.log(data);
+      alert("Success");
+    },
+    (error)=>{
+      console.log(error);
+      
+    }
+
+  )
 }
-  
+  constructor(private login:LoginService,
+    private userservice:UserServiceService,
+    private _router:ActivatedRoute
+  ){}
+
+  userId=0;
+
+  ngOnInit(): void {
+   this.userId= this._router.snapshot.params['userId'];
+  //  alert(this.userId);
+  }
 
 
 
-user={
+confPass='';
+ updateData={
   password:'',
-  email:'',
-  phone:'',
   firstName:'',
   lastName:'',
-};
-// add() {
-  
+  email:'',
+  phone:'',
+}
 
-//   this.login.updateUser(this.user).subscribe(
-//     (data:any)=>{
-//       console.log(data);
-      
-//     }
-//   )
-// }
-constructor(private _route:ActivatedRoute,
-  private login:UserServiceService
-){}
-  ngOnInit(): void {
-   //
-  }
- 
+
+
 
 }
+  
+ 
+

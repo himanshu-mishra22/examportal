@@ -1,5 +1,6 @@
 <button mat-flat-button class="mb mt" [routerLink]="['/admin/add-category']">Add Category</button>
-
+<mat-spinner [diameter]="50" *ngIf="spinnerService.visibility | async">
+</mat-spinner>
 <mat-card appearance="outlined">
     <mat-list>
         <div mat-subheader>All Categories</div>

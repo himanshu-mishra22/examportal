@@ -33,7 +33,7 @@ public class ExamserverApplication implements CommandLineRunner {
 		System.out.println("Starting code....");
 
 //		User user = new User();
-//		user.setUsername("him123");
+//		user.setUsername("him1234");
 //		user.setPassword(this.bCryptPasswordEncoder.encode("mishra"));
 //		user.setFirstName("Himanshu");
 //		user.setLastName("Mishra");
@@ -56,4 +56,4 @@ public class ExamserverApplication implements CommandLineRunner {
 
 
 	}
-} 
+}

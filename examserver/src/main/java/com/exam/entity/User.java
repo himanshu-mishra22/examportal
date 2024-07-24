@@ -1,6 +1,7 @@
 package com.exam.entity;
 
 
+import com.exam.entity.exam.QuizAttempts;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,18 +18,30 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long userId;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
     private String phone;
     private String email;
-    private boolean enable=true;
+    private Boolean enable=true;
     private String profile;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<QuizAttempts> quizAttempts =new HashSet<>();
 
     public String getProfile() {
         return profile;
+    }
+
+    public Set<QuizAttempts> getQuizAttempts() {
+        return quizAttempts;
+    }
+
+    public void setQuizAttempts(Set<QuizAttempts> quizAttempts) {
+        this.quizAttempts = quizAttempts;
     }
 
     public void setProfile(String profile) {
@@ -38,12 +51,12 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public Long getId() {
-        return Id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -139,22 +152,20 @@ public class User implements UserDetails {
         this.userRole = userRole;
     }
 
-    public User(Long id, String username, String password, String firstName, String lastName, String phone, String email, boolean enable) {
-        Id = id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.email = email;
-        this.enable = enable;
-    }
+
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
     private Set<UserRole> userRole= new HashSet<>();
 
 
-
-
+    public User(Long userId, String username, String password, String firstName, String lastName, String phone, String email) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
+    }
 }

@@ -1,0 +1,25 @@
+.bg{
+    background-image: url('../../../public/assets/bg.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container{
+    text-align: center;
+    color: #ffffff;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+p{
+    font-size:1.5rem ;
+    margin-bottom: 2rem;
+    
+}

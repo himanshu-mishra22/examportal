@@ -11,6 +11,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 import { QuizzesService } from '../../../app/services/quizzes.service';
 import { CategoryServiceService } from '../../../app/services/category-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-quizzes',
@@ -37,27 +38,37 @@ export class AddQuizzesComponent implements OnInit {
   }
 
 add() {
-  console.log(this.quizData);
+  // console.log(this.quizData);
   
 
   if(this.quizData.title.trim()=='' || (this.quizData.title==null)){
-    alert("Title required!!");
+    Swal.fire({
+      title:"Title required!"});
     return;
 }
 else if(this.quizData.description.trim()=='' || (this.quizData.description==null)){
-  alert("Description required!!");
+  Swal.fire({
+    title:"Description required!"});
   return;
 }
 
 
+
+
   this._quiz.addQuiz(this.quizData).subscribe(
     (data:any)=>{
-        console.log(data);
-        alert('Quiz Added Successfully!');
+        // console.log(data);
+        // alert('Quiz Added Successfully!');
+        Swal.fire({
+          icon: "success",
+          title: "Quiz added Successfully!",
+          showConfirmButton: false,
+          timer: 1500
+        });
     },
     (error)=>{
       alert('cannot add');
-      console.log(error);
+      // console.log(error);
     }
 
   )

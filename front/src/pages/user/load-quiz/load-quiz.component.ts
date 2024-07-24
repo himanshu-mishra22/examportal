@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { QuizzesService } from '../../../app/services/quizzes.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -17,7 +17,8 @@ export class LoadQuizComponent implements OnInit {
   cid:any;
   quizzes:any;
 constructor(private _route:ActivatedRoute,
-  private _quiz:QuizzesService
+  private _quiz:QuizzesService,
+  private router:Router
 ){}
   ngOnInit(): void {
     
@@ -40,7 +41,11 @@ constructor(private _route:ActivatedRoute,
           }
         )
         
-      }else{
+      }else if(this.cid == 'user-profile'){
+        console.log("user-profile")
+        this.router.navigate(['user']);
+      }
+      else{
         console.log("load specific quiz");
         this._quiz.getActiveQuizzesofCategory(this.cid).subscribe(
           (data:any)=>{

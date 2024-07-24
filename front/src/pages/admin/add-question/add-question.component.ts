@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { QuestionsService } from '../../../app/services/questions.service';
 import { QuillModule } from 'ngx-quill';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-question',
@@ -23,11 +24,15 @@ category: any;
 add() {
  this.questionSer.addQues(this.question).subscribe(
   (data:any)=>{
-    console.log(data);
-    alert('Question added!');
+    Swal.fire({
+      icon: "success",
+      title: "Question added Successfully!",
+      showConfirmButton: false,
+      timer: 1500
+    });
   },
   (error)=>{
-    console.log(error);
+    alert('cannot add');
     
   }
  )

@@ -7,6 +7,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { UserServiceService } from '../../../app/services/user-service.service';
+import { LoginService } from '../../../app/services/login.service';
+import { AttemptService } from '../../../app/services/attempt.service';
 
 @Component({
   selector: 'app-start-quiz',
@@ -16,26 +19,45 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   styleUrl: './start-quiz.component.css'
 })
 export class StartQuizComponent implements OnInit{
-qid:any;
+qid=0;
 question:any;
 marksGot =0;
 correctAns =0;
 attempted =0;
 isSubmit=false;
 timer:any;
+user:any;
+
+currentUser(){
+  this.login.getCurrentUser().subscribe(
+    (data:any)=>{
+      this.user= { userId: data.userId };
+      console.log(this.user);
+      
+    },
+    (error)=>{
+      console.log(error);
+    }
+  );
+    
+}
 
 
   ngOnInit(): void {
     this.noBack();
-    this.qid=this.route.snapshot.params['qid'];
-    // alert(this.qid);
+    this.qid= this.route.snapshot.params['qid'];
+    // console.log('qid:', this.qid, typeof(this.qid));
     this.loadQuestions();
-    
+    this.currentUser();
   }
 constructor(private platformLocation:PlatformLocation,
   private route:ActivatedRoute,
-  private questions:QuestionsService
+  private questions:QuestionsService,
+  private login:LoginService,
+  private _attempt:AttemptService
 ){}
+
+
   noBack(){
     history.pushState(null, '' ,location.href);
     this.platformLocation.onPopState(()=>{
@@ -54,9 +76,8 @@ constructor(private platformLocation:PlatformLocation,
           q['givenAns']='';
           
         });
-        console.log(this.question);
+       
         this.startTimer();
-
       },
       (error)=>{
         console.log(error);
@@ -82,9 +103,30 @@ constructor(private platformLocation:PlatformLocation,
         this.attempted++;
       }
     });
-    console.log("correct ans " + this.correctAns);
-    console.log("marks obtained " + this.marksGot);
-    console.log("attempted "+ this.attempted);
+
+    //attempted data
+    const attemptData = {
+      marks: this.marksGot,
+      qid: this.qid,
+      userId: this.user.userId
+    };
+
+    console.log(attemptData);
+    
+
+    this._attempt.addAttempts(attemptData).subscribe(
+      (data:any)=>{
+        console.log(data);
+        alert("submitted");
+      },(error)=>{
+        console.log(error);
+        console.log("data not saved");
+      }
+    );
+    
+    
+    
+   
     
     
   }
@@ -106,8 +148,7 @@ constructor(private platformLocation:PlatformLocation,
   }
 
 
-  //the quiz will ask to submit the quiz once the timer is done,
-  // to prevent this happening... create a function in submit() like eval() that consist of quiz submission,
-  //and call that function directly to the startTimer() funtion.
-
+  attempt={
+    //create further and add the dynamic values as well
+  }
 }

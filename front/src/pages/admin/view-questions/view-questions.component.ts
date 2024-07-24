@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-questions',
@@ -47,16 +48,43 @@ constructor(private route:ActivatedRoute,
 
   delete(qid:any) {
     // alert(qid);
-    this.quest.deleteQues(qid).subscribe(
-      (data:any)=>{
-        alert('Qustion Deleted!');
-        this.questions = this.questions.filter((ques:any)=>ques.quesid != qid)
-      },
-      (error)=>{
-        console.log(error);
+    // this.quest.deleteQues(qid).subscribe(
+    //   (data:any)=>{
+    //     alert('Qustion Deleted!');
+    //     this.questions = this.questions.filter((ques:any)=>ques.quesid != qid)
+    //   },
+    //   (error)=>{
+    //     console.log(error);
         
+    //   }
+    // )
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.quest.deleteQues(qid).subscribe(
+          (data:any)=>{
+            this.questions = this.questions.filter((ques:any)=>ques.quesid != qid)
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+          },
+          (error)=>{
+            alert("Something wwent wrong!")
+            
+          }
+        )
       }
-    )
+    });
   }
 
   

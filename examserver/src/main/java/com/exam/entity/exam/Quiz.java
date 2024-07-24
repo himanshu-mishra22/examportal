@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -62,18 +63,18 @@ public class Quiz {
         this.quesNums = quesNums;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
     private String maxMarks;
     private String quesNums;
 
-    private boolean active = false;
+    private Boolean active = false;
 
 
     public Long getQid() {
@@ -84,19 +85,32 @@ public class Quiz {
         this.qid = qid;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public List<QuizAttempts> getQuizattempts() {
+        return quizattempts;
+    }
+
+    public void setQuizattempts(List<QuizAttempts> quizattempts) {
+        this.quizattempts = quizattempts;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getdescription() {
-        return description;
-    }
 
-    public void setdescription(String description) {
-        this.description = description;
-    }
+    @OneToMany(mappedBy = "quiz",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<QuizAttempts> quizattempts;
 }

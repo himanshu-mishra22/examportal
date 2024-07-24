@@ -1,0 +1,32 @@
+
+<div class="head mt">
+    <button mat-icon-button [routerLink]="['/admin/view-quizzes']">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h4 class="ml">Total Attempts</h4>
+   </div>
+<div class="bootstrap-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card *ngFor="let a of attempt" class="mt">
+                <mat-card-content>
+                 <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-9">
+
+                           <p>Name: <b>{{a.user.firstName +" "+a.user.lastName}}</b> </p>
+                           <p>Username : <b>{{a.username}}</b> </p>
+                           <p>Phone number : <b>{{a.user.phone}}</b></p>
+                           <p>Marks Obtained: <b>{{a.marks}}</b></p>
+                        </div>
+                        <div class="col-md-3">
+                           
+                        </div>
+                      </div>
+                 </div>
+                </mat-card-content>
+                
+            </mat-card>
+        </div>
+    </div>
+</div>

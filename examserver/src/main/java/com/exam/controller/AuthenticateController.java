@@ -32,12 +32,13 @@ public class AuthenticateController {
     private JwtUtils jwtUtils;
 
     @PostMapping("/generate-token")
-    public ResponseEntity<?> generateToken(@RequestBody JwtReq jwtReq){
+    public ResponseEntity<?> generateToken(@RequestBody JwtReq jwtReq) throws Exception {
         try{
             authenticate(jwtReq.getUsername(), jwtReq.getPassword());
 
-        }catch(Exception e){
-            e.printStackTrace();
+        }
+        catch (UsernameNotFoundException be){
+            throw new Exception("Invalid Credentials, User not found"+be.getMessage());
         }
         //authenticate
         UserDetails userDetails = this.userDetailService.loadUserByUsername(jwtReq.getUsername());

@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CategoryServiceService } from '../../../app/services/category-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-quiz',
@@ -32,11 +33,12 @@ constructor(private _route:ActivatedRoute,
     // alert(this.qid);
     this.quizSer.getQuiz(this.qid).subscribe(
       (data:any)=>{
-        console.log(data);
+        // console.log(data);
         this.quiz=data;
+        
       },
       (error)=>{
-        console.log(error);
+        alert('Something went wrong!');
         
       }
     );
@@ -46,7 +48,7 @@ constructor(private _route:ActivatedRoute,
         this.categories=data;
       },
       (error)=>{
-        console.log(error);
+        alert('Something went wrong!');
         
       }
     )
@@ -60,22 +62,28 @@ add() {
 
   //validation
   if(this.quiz.title.trim()=='' || (this.quiz.title==null)){
-    alert("Title required!!");
+    Swal.fire({
+      title:"Title required!"});
     return;
 }
 else if(this.quiz.description.trim()=='' || (this.quiz.description==null)){
-  alert("Description required!!");
+  Swal.fire({
+    title:"Description required!"});
   return;
 }
 
 
   this.quizSer.updateQuiz(this.quiz).subscribe(
     (data:any)=>{
-      console.log(data);
-      alert("Quiz Updated!");  
+      Swal.fire({
+        icon: "success",
+        title: "Quiz updated Successfully!",
+        showConfirmButton: false,
+        timer: 1500
+      }); 
     },
     (error)=>{
-      console.log(error);
+      alert('Something went wrong!');
       
     }
   )

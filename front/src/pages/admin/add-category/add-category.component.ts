@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CategoryServiceService } from '../../../app/services/category-service.service';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-category',
@@ -26,14 +27,19 @@ category ={
 add() {
 //validate 
 if(this.category.title.trim()=='' || this.category.title==null){
-  alert('Title required!');
+  Swal.fire({
+    title:"Description required!"});
   return;
 }
 
   this._addCat.addCat(this.category).subscribe(
     (data:any)=>{
-      console.log(data);
-      alert('Added successfully!!');
+      Swal.fire({
+        icon: "success",
+        title: "Category added Successfully!",
+        showConfirmButton: false,
+        timer: 1500
+      });
       this.category ={
         title:'',
         description:'',
@@ -41,7 +47,7 @@ if(this.category.title.trim()=='' || this.category.title==null){
       
     },
     (error)=>{
-      console.log(error);
+      alert('cannot add');
       
     }
 

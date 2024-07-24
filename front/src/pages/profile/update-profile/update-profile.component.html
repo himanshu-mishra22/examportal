@@ -12,45 +12,36 @@
             <div class="col-md-6 offset-md-3">
                 <mat-card appearance="outlined">
                     <mat-card-content>
-                <form #profileForm="ngForm" (ngSubmit)="add(profileForm)">
+                <form (ngSubmit)="submit()">
 
 
                   <mat-form-field class="form" appearance="outline">
                     <mat-label>Change Password</mat-label>
-                    <input matInput name="password" ngModel required type="password">
-                    <mat-error *ngIf="profileForm.controls['password'].invalid && profileForm.controls['password'].touched">
-                        Password is required.
-                    </mat-error>
+                    <input matInput name="password" [(ngModel)]="updateData.password">
                 </mat-form-field>
 
                 <mat-form-field class="form" appearance="outline">
                     <mat-label>Re-Type Password</mat-label>
-                    <input matInput name="confirmPassword" ngModel required type="password">
-                    <mat-error *ngIf="profileForm.controls['confirmPassword'].invalid && profileForm.controls['confirmPassword'].touched">
-                        Confirm Password is required.
-                    </mat-error>
-                    <mat-error *ngIf="profileForm.controls['password'].value !== profileForm.controls['confirmPassword'].value && profileForm.controls['confirmPassword'].touched">
-                        Passwords do not match.
-                    </mat-error>
+                    <input matInput name="confirmPassword" [(ngModel)]="confPass">
                 </mat-form-field>
                       <mat-form-field class="form" appearance="outline">
                         <mat-label>First Name</mat-label>
-                        <input matInput name="firstName">
+                        <input matInput name="firstName" [(ngModel)]="updateData.firstName">
                       </mat-form-field>
 
                       <mat-form-field class="form" appearance="outline">
                         <mat-label>Last Name</mat-label>
-                        <input matInput name="lastName">
+                        <input matInput name="lastName" [(ngModel)]="updateData.lastName">
                       </mat-form-field>
 
                       <mat-form-field class="form" appearance="outline">
                         <mat-label>Phone Number</mat-label>
-                        <input type="number" matInput  name="phone">
+                        <input type="number" matInput  name="phone" [(ngModel)]="updateData.phone">
                       </mat-form-field>
 
                       <mat-form-field class="form" appearance="outline">
                         <mat-label>Email</mat-label>
-                        <input type="email" matInput name="email">
+                        <input type="email" matInput name="email" [(ngModel)]="updateData.email">
                       </mat-form-field>
 
 

@@ -1,0 +1,29 @@
+[33mcommit 880a8d5c87d5e46bd6d72562e3250d6991b414b3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Himanshu Prakash Mishra <mhimanshuprakash@gmail.com>
+Date:   Thu Jul 18 15:13:37 2024 +0530
+
+    added quizzes to the user side.
+
+[33mcommit d0b3f9cc1d2c7042e79b7df9b1310b226de59bba[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Himanshu Prakash Mishra <mhimanshuprakash@gmail.com>
+Date:   Fri Jul 5 23:51:19 2024 +0530
+
+    Added admin dashboard components
+    
+    Added admin profile
+    
+    Create README.md
+    
+    adding new entities
+
+[33mcommit 836908f4c3e95d4b20631bb180c3a77e81f80475[m
+Author: Himanshu Prakash Mishra <mhimanshuprakash@gmail.com>
+Date:   Fri Jul 5 23:59:05 2024 +0530
+
+    Initial commit
+
+[33mcommit a993a4a55fbd76141fae862a789cf509f4dccba8[m
+Author: Himanshu Prakash Mishra <mhimanshuprakash@gmail.com>
+Date:   Fri Jul 5 23:58:15 2024 +0530
+
+    merge

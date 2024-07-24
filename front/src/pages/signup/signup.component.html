@@ -1,4 +1,4 @@
-<div class="bootstrap-wrapper">
+<div class="bootstrap-wrapper  bg-color">
 	<div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
@@ -12,33 +12,33 @@
                 <form (ngSubmit)="formSubmit()">
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Username</mat-label>
-                        <input matInput [(ngModel)]="user.username" name="username">
+                        <input matInput required  [(ngModel)]="user.username" name="username">
                         <mat-hint>Username cannot be changed after registration! </mat-hint>
                       </mat-form-field>
 
                       <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input matInput [(ngModel)]="user.password" name="password">
+                        <input matInput required  [(ngModel)]="user.password" name="password">
                       </mat-form-field>
 
                       <mat-form-field class="full-width" appearance="outline">
                         <mat-label>First Name</mat-label>
-                        <input matInput [(ngModel)]="user.firstName" name="firstName">
+                        <input matInput required [(ngModel)]="user.firstName" name="firstName">
                       </mat-form-field>
 
                       <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Last Name</mat-label>
-                        <input matInput [(ngModel)]="user.lastName" name="lastName">
+                        <input matInput required [(ngModel)]="user.lastName" name="lastName">
                       </mat-form-field>
 
                       <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Phone Number</mat-label>
-                        <input type="number" matInput [(ngModel)]="user.phone" name="phone">
+                        <input type="number" matInput required [(ngModel)]="user.phone" name="phone">
                       </mat-form-field>
 
                       <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Email</mat-label>
-                        <input type="email" matInput [(ngModel)]="user.email" name="email">
+                        <input type="email" matInput required [(ngModel)]="user.email" name="email">
                       </mat-form-field>
 
 

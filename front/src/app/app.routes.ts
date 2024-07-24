@@ -19,6 +19,8 @@ import { UpdateProfileComponent } from '../pages/profile/update-profile/update-p
 import { LoadQuizComponent } from '../pages/user/load-quiz/load-quiz.component';
 import { InstructionPageComponent } from '../pages/user/instruction-page/instruction-page.component';
 import { StartQuizComponent } from '../pages/user/start-quiz/start-quiz.component';
+import { AttemptsComponent } from '../pages/admin/attempts/attempts.component';
+import { UserProfileComponent } from '../pages/user/user-profile/user-profile.component';
 
 export const routes: Routes = [
     {path:"",
@@ -44,7 +46,7 @@ export const routes: Routes = [
             },
             {
                 path:'',
-                component:FrontComponent,
+                component:ProfileComponent,
             },
             {
                 path:'view-category',
@@ -75,8 +77,12 @@ export const routes: Routes = [
                 component:AddQuestionComponent,
             },
             {
-                path:'profile/update-profile/:username',
+                path:'profile/update-profile/:userId',
                 component:UpdateProfileComponent,
+            },
+            {
+                path:'attempt/:qid',
+                component:AttemptsComponent,
             }
             
 
@@ -94,6 +100,20 @@ export const routes: Routes = [
             {
                 path:'instructions/:qid',
                 component:InstructionPageComponent,
+            },
+            {
+                path:'user-profile',
+                component:UserProfileComponent,
+                
+            },
+            {
+                path:'',
+                component:UserProfileComponent,
+                
+            },
+            {
+                path:'profile/update-profile/:userId',
+                component:UpdateProfileComponent,
             },
            
 

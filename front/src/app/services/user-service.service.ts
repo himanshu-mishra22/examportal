@@ -14,11 +14,11 @@ export class UserServiceService {
     return this.http.post(`${baseUrl}/user/`,user);
   }
 
-  public updateUser(user:any){
+  public updateUser(userId:number, user:any){
     const token = this.getToken();
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.put(`${baseUrl}/user`, user, { headers });
+      return this.http.put(`${baseUrl}/user/${userId}`, user, { headers });
     } else {
       throw new Error('Token is not available');
     }
