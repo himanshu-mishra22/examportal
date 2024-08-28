@@ -16,13 +16,12 @@ public class QuizAttempts {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long attemptId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "qid")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Quiz quiz;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
+
 
     public QuizAttempts() {
     }

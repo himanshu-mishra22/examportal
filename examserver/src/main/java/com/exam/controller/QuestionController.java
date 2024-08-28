@@ -33,8 +33,8 @@ public class QuestionController {
 
     //update
     @PutMapping("/")
-    public ResponseEntity<Questions>update(@RequestBody Questions questons){
-        return ResponseEntity.ok(this.questionService.updateQuestion(questons));
+    public ResponseEntity<Questions>update(@RequestBody Questions questions){
+        return ResponseEntity.ok(this.questionService.updateQuestion(questions));
     }
 
     //get

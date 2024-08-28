@@ -21,6 +21,7 @@ import { InstructionPageComponent } from '../pages/user/instruction-page/instruc
 import { StartQuizComponent } from '../pages/user/start-quiz/start-quiz.component';
 import { AttemptsComponent } from '../pages/admin/attempts/attempts.component';
 import { UserProfileComponent } from '../pages/user/user-profile/user-profile.component';
+import { UpdateQuestionComponent } from '../pages/admin/update-question/update-question.component';
 
 export const routes: Routes = [
     {path:"",
@@ -81,8 +82,12 @@ export const routes: Routes = [
                 component:UpdateProfileComponent,
             },
             {
-                path:'attempt/:qid',
+                path:'attempt/:qid/:qtitle',
                 component:AttemptsComponent,
+            },
+            {
+                path:'question/:quesid',
+                component:UpdateQuestionComponent,
             }
             
 

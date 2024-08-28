@@ -39,8 +39,11 @@ public class QuizAttemptsController {
 
 
     @PostMapping("/save")
-    public ResponseEntity<QuizAttempts> saveQuizAttempt(@RequestBody QuizAttempts quizAttempt) {
-        QuizAttempts savedAttempt = quizAttemptService.saveQuizAttempt(quizAttempt);
+    public ResponseEntity<QuizAttempts> saveQuizAttempt(
+            @RequestParam Long qid,
+            @RequestParam Long userId,
+             @RequestBody QuizAttempts quizAttempt) {
+        QuizAttempts savedAttempt = quizAttemptService.saveQuizAttempt(qid,userId,quizAttempt);
         return ResponseEntity.ok(savedAttempt);
     }
 
@@ -56,8 +59,8 @@ public class QuizAttemptsController {
         return ResponseEntity.ok(quizAttempts);
     }
 
-    @GetMapping("/quiz/{quizId}")
-    public ResponseEntity<List<QuizAttempts>> getQuizAttemptsForQuiz(@PathVariable Long quizId) {
+    @GetMapping("/quiz/{qid}")
+    public ResponseEntity<List<QuizAttempts>> getQuizAttemptsForQuiz(@PathVariable("qid") Long quizId) {
         Quiz quiz = quizService.getQuiz(quizId);
         if (quiz == null) {
             return ResponseEntity.notFound().build();
@@ -66,6 +69,5 @@ public class QuizAttemptsController {
         List<QuizAttempts> quizAttempts = quizAttemptService.getAttemptsForQuiz(quiz);
         return ResponseEntity.ok(quizAttempts);
     }
-
 
 }

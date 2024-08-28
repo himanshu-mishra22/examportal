@@ -32,7 +32,7 @@ constructor(private route:ActivatedRoute,
   ngOnInit(): void {
     this.qid = this.route.snapshot.params['qid'];
     this.qtitle = this.route.snapshot.params['qtitle'];
-    // console.log(this.qid,this.qtitle);
+    console.log(this.qid, typeof(this.qid));
     this.quest.getQuestions(this.qid).subscribe(
       (data:any)=>{
         console.log(data);

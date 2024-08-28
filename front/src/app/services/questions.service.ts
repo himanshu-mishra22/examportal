@@ -59,4 +59,14 @@ export class QuestionsService {
       throw new Error('Token is not available');
     }
   }
+
+  public updateQues(ques:any){
+    const token = this.getToken();
+    if(token){
+      const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
+      return this.http.put(`${baseUrl}/question/`,ques, { headers });
+    }else{
+      throw new Error('Token is not available');
+    }
+  }
 }

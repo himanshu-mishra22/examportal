@@ -31,8 +31,8 @@ user:any;
 currentUser(){
   this.login.getCurrentUser().subscribe(
     (data:any)=>{
-      this.user= { userId: data.userId };
-      console.log(this.user);
+      this.user= data.userId;
+      // console.log(this.user);
       
     },
     (error)=>{
@@ -47,6 +47,7 @@ currentUser(){
     this.noBack();
     this.qid= this.route.snapshot.params['qid'];
     // console.log('qid:', this.qid, typeof(this.qid));
+
     this.loadQuestions();
     this.currentUser();
   }
@@ -107,28 +108,20 @@ constructor(private platformLocation:PlatformLocation,
     //attempted data
     const attemptData = {
       marks: this.marksGot,
-      qid: this.qid,
-      userId: this.user.userId
     };
 
-    console.log(attemptData);
+    // console.log(attemptData);
     
 
-    this._attempt.addAttempts(attemptData).subscribe(
+    this._attempt.addAttempts(this.qid,this.user,attemptData).subscribe(
       (data:any)=>{
-        console.log(data);
+        // console.log(data);
         alert("submitted");
       },(error)=>{
         console.log(error);
         console.log("data not saved");
       }
     );
-    
-    
-    
-   
-    
-    
   }
 
   startTimer(){
@@ -149,6 +142,6 @@ constructor(private platformLocation:PlatformLocation,
 
 
   attempt={
-    //create further and add the dynamic values as well
+    
   }
 }

@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import com.exam.Service.QuizAttemptService;
 import com.exam.Service.QuizService;
 import com.exam.entity.exam.Category;
 import com.exam.entity.exam.Quiz;
@@ -16,6 +17,9 @@ public class QuizController {
 
     @Autowired
     private QuizService quizService;
+
+    @Autowired
+    private QuizAttemptService quizAttemptService;
 
     //add quiz service
     @PostMapping("/")
@@ -70,5 +74,11 @@ public class QuizController {
         Category category = new Category();
         category.setCid(cid);
         return this.quizService.getActiveQuizCategory(category);
+    }
+
+    @GetMapping("/valid/{userId}/{qid}")
+    public ResponseEntity<Boolean> canUserTakeExam(@PathVariable("userId") Long userId, @PathVariable("qid") Long qid) {
+        boolean hasTaken = quizAttemptService.hasUserTakenQuiz(userId, qid);
+        return ResponseEntity.ok(!hasTaken);
     }
 }

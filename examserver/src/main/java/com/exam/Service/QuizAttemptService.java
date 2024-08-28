@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public interface QuizAttemptService {
 
-    QuizAttempts saveQuizAttempt(QuizAttempts quizAttempt);
+    QuizAttempts saveQuizAttempt(Long qid, Long userId, QuizAttempts quizAttempt);
 
     List<QuizAttempts> getAllQuizAttempts();
 
@@ -19,4 +19,5 @@ public interface QuizAttemptService {
 
     List<QuizAttempts> getAttemptsForQuiz(Quiz quiz);
 
+    Boolean hasUserTakenQuiz(Long userId, Long qid);
 }

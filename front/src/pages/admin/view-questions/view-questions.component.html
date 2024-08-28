@@ -32,7 +32,7 @@
                         <mat-divider></mat-divider>
                         <p class="mt"><b>Correct Answer:</b> {{q.ans}}</p>
                     </div>
-                    <button mat-flat-button class="mr">Update</button>
+                    <button mat-flat-button class="mr" [routerLink]="'/admin/question/'+qid+'/'+qtitle">Update</button>
                     <button mat-raised-button (click)="delete(q.quesid)">Delete</button>
                 </mat-card-content>
                 

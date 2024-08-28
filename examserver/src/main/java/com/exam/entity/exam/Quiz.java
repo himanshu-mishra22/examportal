@@ -39,6 +39,16 @@ public class Quiz {
     private String title;
     private String description;
 
+    public Quiz(Long qid, Category category, String title, String description, String maxMarks, String quesNums, Boolean active) {
+        this.qid = qid;
+        this.category = category;
+        this.title = title;
+        this.description = description;
+        this.maxMarks = maxMarks;
+        this.quesNums = quesNums;
+        this.active = active;
+    }
+
     public Set<Questions> getQuestion() {
         return question;
     }

@@ -1,0 +1,84 @@
+
+<div class="bootstrap-wrapper">
+    <div class="row mt">
+        <div class="col-md-12">
+            <div class="head mt">
+                <button mat-icon-button [routerLink]="'/admin/view-ques/'+qid+'/'+qtitle">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <h4 class="ml">Update Question</h4>
+               </div>
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>
+                        Enter details of the new question.
+                    </mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content class="mt">
+                    <form (ngSubmit)="add()">
+                          <quill-editor class="mb" [(ngModel)]="question.content" name="content"></quill-editor>
+
+                        <!-- options -->
+                          <div class="row">
+                            <div class="col-md-6">
+                                <!-- op1 -->
+                                <mat-form-field class="form">
+                                    <mat-label>Option 1</mat-label>
+                                    <input [(ngModel)]="question.op1" name="op1"
+                                    matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- op2 -->
+                                <mat-form-field class="form">
+                                    <mat-label>Option 2</mat-label>
+                                    <input [(ngModel)]="question.op2" name="op2"
+                                    matInput>
+                                </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                                <!-- op3 -->
+                                <mat-form-field class="form">
+                                    <mat-label>Option 3</mat-label>
+                                    <input [(ngModel)]="question.op3" name="op3"
+                                     matInput>
+                                </mat-form-field>
+
+                            </div>
+                            <div class="col-md-6">
+                                <!-- op4 -->
+                                <mat-form-field class="form">
+                                    <mat-label>Option 4</mat-label>
+                                    <input [(ngModel)]="question.op4" name="op4"
+                                     matInput>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                            <!-- ams -->
+                            <mat-form-field class="form">
+                                <mat-label>Select Answer</mat-label>
+                                <mat-select [(ngModel)]="question.ans" name="ans">
+                                    <mat-option *ngIf="question.op1" [value]="question.op1">{{question.op1}}</mat-option>
+                                    <mat-option *ngIf="question.op2" [value]="question.op2">{{question.op2}}</mat-option>
+                                    <mat-option *ngIf="question.op3" [value]="question.op3">{{question.op3}}</mat-option>
+                                    <mat-option *ngIf="question.op4" [value]="question.op4">{{question.op4}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+
+                          <div class="container text-center">
+                            <button mat-flat-button type="submit">Add</button>
+                          </div>
+
+                          
+
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

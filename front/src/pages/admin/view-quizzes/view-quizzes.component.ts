@@ -9,6 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { QuizzesService } from '../../../app/services/quizzes.service';
 import Swal from 'sweetalert2';
+import { LoginService } from '../../../app/services/login.service';
 
 @Component({
   selector: 'app-view-quizzes',
@@ -18,6 +19,8 @@ import Swal from 'sweetalert2';
   styleUrl: './view-quizzes.component.css'
 })
 export class ViewQuizzesComponent implements OnInit{
+
+
 
 
 deleteQuiz(qid:any) {
@@ -52,6 +55,7 @@ deleteQuiz(qid:any) {
 }
 
 
+
 quizzes = [
   { 
     qid:2,
@@ -77,6 +81,7 @@ constructor(private quiz:QuizzesService){}
         console.log(error);
         
       }
-    )
+    );
+
   }
 }

@@ -25,7 +25,7 @@ constructor(private _route:ActivatedRoute,
 ){}
   ngOnInit(): void {
     this.qid = this._route.snapshot.params['qid'];
-    // alert(this.qid);
+    console.log(this.qid, typeof(this.qid));
     this._attempt.getAttempts(this.qid).subscribe(
       (data:any)=>{
         console.log(data);
@@ -41,7 +41,7 @@ constructor(private _route:ActivatedRoute,
     
   }
 
-qid:any;
+qid=0;
 attempt:any;
 
 }

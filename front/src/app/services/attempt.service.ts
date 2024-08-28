@@ -29,11 +29,11 @@ export class AttemptService {
      }
    }
 
-   public addAttempts(attempt:any){
+   public addAttempts(qid:number,userId:number,attempt:any){
     const token = this.getToken();
     if(token){
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.post(`${baseUrl}/attempts/save`,attempt,{ headers })
+      return this.http.post(`${baseUrl}/attempts/save?qid=${qid}&userId=${userId}`,attempt,{ headers })
     }else{
       throw new Error('Token is not available');
     }

@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
     imports: [RouterOutlet, NavbarComponent,MatProgressSpinnerModule,CommonModule]
 })
 export class AppComponent {
-  title = 'front';
+  title = 'graceMarX';
 
   constructor(public spinnerService: SpinnerService) {}
 

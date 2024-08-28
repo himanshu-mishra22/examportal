@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { LoginService } from '../../../app/services/login.service';
 
 @Component({
   selector: 'app-instruction-page',
@@ -20,25 +21,38 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrl: './instruction-page.component.css'
 })
 export class InstructionPageComponent implements OnInit {
+Completed() {
+  alert("Quiz Already Completed");
+  this.router.navigate(['/user/0']);
 
+}
+userId:any;
 qid:any;
 quiz:any;
+isCompleted: boolean=true;
 constructor(private route:ActivatedRoute,
   private quizService:QuizzesService,
-  private router:Router
+  private router:Router,
+  private login:LoginService
 ){}
   ngOnInit(): void {
+    this.userInfo();
     this.qid = this.route.snapshot.params['qid'];
-    // alert(this.qid);  
-    
-    
     this.quizService.getQuiz(this.qid).subscribe(
       (data:any)=>{
-        console.log(data);
+        
         this.quiz=data;
+        // this.hasAttempted();
       },
       (error)=>{
         alert(error);
+      }
+    )
+  }
+  userInfo() {
+    this.login.getCurrentUser().subscribe(
+      (data:any)=>{
+        this.userId = data.userId;
       }
     )
   }
@@ -46,4 +60,18 @@ constructor(private route:ActivatedRoute,
   start() {
     this.router.navigate(['/start/'+ this.qid]);
     }
+
+  public hasAttempted(){
+    if(this.userId && this.qid){
+      this.quizService.canTakeExam(this.userId,this.qid).subscribe(
+        (hasAttempted : any)=>{
+          this.isCompleted = hasAttempted;
+        },
+        (error)=>{
+          console.log(error);
+          
+        }
+      )
+    }
+  }
 }

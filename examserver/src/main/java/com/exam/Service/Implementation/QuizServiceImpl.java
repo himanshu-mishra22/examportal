@@ -1,7 +1,10 @@
 package com.exam.Service.Implementation;
 
+import com.exam.Repo.QuizAttemptsRepo;
 import com.exam.Repo.QuizRepo;
+import com.exam.Repo.UserRepo;
 import com.exam.Service.QuizService;
+import com.exam.entity.User;
 import com.exam.entity.exam.Category;
 import com.exam.entity.exam.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,12 @@ public class QuizServiceImpl implements QuizService {
 
     @Autowired
     private QuizRepo quizRepo;
+
+    @Autowired
+    private QuizAttemptsRepo quizAttemptsRepo;
+
+    @Autowired
+    private UserRepo userRepo;
 
     @Override
     public Quiz addQuiz(Quiz quiz) {
@@ -58,5 +67,7 @@ public class QuizServiceImpl implements QuizService {
     public List<Quiz> getActiveQuizCategory(Category category) {
         return this.quizRepo.findByCategoryAndActive(category,true);
     }
+
+
 
 }

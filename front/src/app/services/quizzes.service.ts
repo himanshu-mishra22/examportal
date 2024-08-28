@@ -107,4 +107,15 @@ export class QuizzesService {
 }
 
  }
+
+public  canTakeExam(userId: number, qid: number) {
+  const token = this.getToken();
+  if (token) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${baseUrl}/quiz/valid/${userId}/${qid}` ,{ headers });
+  } else {
+    throw new Error('Token is not available');
+}
+}
+
 }

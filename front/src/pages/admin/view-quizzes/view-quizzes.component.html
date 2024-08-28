@@ -22,7 +22,7 @@
    <mat-card-actions class="actions">
     <button mat-flat-button [routerLink]="'/admin/view-ques/'+q.qid+'/'+q.title">Questions</button>
     <button mat-stroked-button class="ml" [routerLink]="'/admin/quiz/'+q.qid">Update</button>
-    <button mat-flat-button class="ml" [routerLink]="'/admin/attempt/'+q.qid">Attempts</button>
+    <button mat-flat-button class="ml" [routerLink]="'/admin/attempt/'+q.qid+'/'+q.title">Attempts</button>
    
    </mat-card-actions>
 </mat-card>
